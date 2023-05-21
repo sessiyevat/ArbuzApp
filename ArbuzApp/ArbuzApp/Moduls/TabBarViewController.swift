@@ -46,7 +46,7 @@ class TabBarViewController: UITabBarController {
         let bellImage = UIImage(systemName: "bell")?.withTintColor(.black, renderingMode: .alwaysOriginal)
         
         let vc1 = MainAssembly.createCatalogue()
-        let vc2 = MainAssembly.createCatalogue()
+        let vc2 = BucketViewController()
         let vc3 = MainAssembly.createCatalogue()
     
         vc1.navigationItem.leftBarButtonItem =  UIBarButtonItem(customView: logoImageView)

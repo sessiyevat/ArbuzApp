@@ -24,6 +24,13 @@
 		65FD03A92A193231008A3C64 /* CataloguePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD03A82A193231008A3C64 /* CataloguePresenter.swift */; };
 		65FD03AB2A193294008A3C64 /* CatalogueViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD03AA2A193294008A3C64 /* CatalogueViewProtocol.swift */; };
 		65FD03AD2A1932DA008A3C64 /* CataloguePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD03AC2A1932DA008A3C64 /* CataloguePresenterProtocol.swift */; };
+		65FD03AF2A1937C6008A3C64 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD03AE2A1937C6008A3C64 /* Product.swift */; };
+		65FD03B22A1937EA008A3C64 /* ProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD03B12A1937EA008A3C64 /* ProductList.swift */; };
+		65FD03B42A1A7009008A3C64 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD03B32A1A7009008A3C64 /* DataManager.swift */; };
+		65FD03B72A1A70A1008A3C64 /* BucketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD03B62A1A70A1008A3C64 /* BucketViewController.swift */; };
+		65FD03B92A1A70DA008A3C64 /* BucketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD03B82A1A70DA008A3C64 /* BucketTableViewCell.swift */; };
+		65FD03BC2A1A72AC008A3C64 /* ProductDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD03BB2A1A72AC008A3C64 /* ProductDetailsPresenter.swift */; };
+		65FD03BE2A1A760C008A3C64 /* ProductDetailsViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD03BD2A1A760C008A3C64 /* ProductDetailsViewProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +52,13 @@
 		65FD03A82A193231008A3C64 /* CataloguePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CataloguePresenter.swift; sourceTree = "<group>"; };
 		65FD03AA2A193294008A3C64 /* CatalogueViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueViewProtocol.swift; sourceTree = "<group>"; };
 		65FD03AC2A1932DA008A3C64 /* CataloguePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CataloguePresenterProtocol.swift; sourceTree = "<group>"; };
+		65FD03AE2A1937C6008A3C64 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		65FD03B12A1937EA008A3C64 /* ProductList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductList.swift; sourceTree = "<group>"; };
+		65FD03B32A1A7009008A3C64 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		65FD03B62A1A70A1008A3C64 /* BucketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketViewController.swift; sourceTree = "<group>"; };
+		65FD03B82A1A70DA008A3C64 /* BucketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketTableViewCell.swift; sourceTree = "<group>"; };
+		65FD03BB2A1A72AC008A3C64 /* ProductDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsPresenter.swift; sourceTree = "<group>"; };
+		65FD03BD2A1A760C008A3C64 /* ProductDetailsViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +99,7 @@
 				65FD03852A17C711008A3C64 /* LaunchScreen.storyboard */,
 				65FD03882A17C711008A3C64 /* Info.plist */,
 				65FD03802A17C70F008A3C64 /* ArbuzApp.xcdatamodeld */,
+				65FD03B32A1A7009008A3C64 /* DataManager.swift */,
 			);
 			path = ArbuzApp;
 			sourceTree = "<group>";
@@ -92,6 +107,8 @@
 		65FD038E2A17C78E008A3C64 /* Moduls */ = {
 			isa = PBXGroup;
 			children = (
+				65FD03B52A1A708E008A3C64 /* BucketList */,
+				65FD03B02A1937D2008A3C64 /* Model */,
 				65FD03932A17C8F7008A3C64 /* Catalog */,
 				65FD038F2A17C799008A3C64 /* MainAssembly.swift */,
 				65FD03912A17C7D3008A3C64 /* TabBarViewController.swift */,
@@ -142,6 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				65FD03A22A192DB7008A3C64 /* ProductDetailsViewController.swift */,
+				65FD03BB2A1A72AC008A3C64 /* ProductDetailsPresenter.swift */,
+				65FD03BD2A1A760C008A3C64 /* ProductDetailsViewProtocol.swift */,
 			);
 			path = ProductDetails;
 			sourceTree = "<group>";
@@ -153,6 +172,24 @@
 				65FD03AC2A1932DA008A3C64 /* CataloguePresenterProtocol.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		65FD03B02A1937D2008A3C64 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				65FD03AE2A1937C6008A3C64 /* Product.swift */,
+				65FD03B12A1937EA008A3C64 /* ProductList.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		65FD03B52A1A708E008A3C64 /* BucketList */ = {
+			isa = PBXGroup;
+			children = (
+				65FD03B62A1A70A1008A3C64 /* BucketViewController.swift */,
+				65FD03B82A1A70DA008A3C64 /* BucketTableViewCell.swift */,
+			);
+			path = BucketList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,15 +269,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				65FD03952A17C928008A3C64 /* CatalogueViewController.swift in Sources */,
+				65FD03BE2A1A760C008A3C64 /* ProductDetailsViewProtocol.swift in Sources */,
 				65FD039D2A19026A008A3C64 /* PosterCollectionView.swift in Sources */,
+				65FD03AF2A1937C6008A3C64 /* Product.swift in Sources */,
 				65FD03A32A192DB7008A3C64 /* ProductDetailsViewController.swift in Sources */,
+				65FD03B72A1A70A1008A3C64 /* BucketViewController.swift in Sources */,
 				65FD03A12A190A10008A3C64 /* ProductCollectionViewCell.swift in Sources */,
 				65FD03902A17C799008A3C64 /* MainAssembly.swift in Sources */,
+				65FD03BC2A1A72AC008A3C64 /* ProductDetailsPresenter.swift in Sources */,
 				65FD039B2A19007B008A3C64 /* CatalogueSectionsCollectionView.swift in Sources */,
 				65FD03782A17C70F008A3C64 /* AppDelegate.swift in Sources */,
 				65FD039F2A1907A0008A3C64 /* SectionHeader.swift in Sources */,
+				65FD03B42A1A7009008A3C64 /* DataManager.swift in Sources */,
+				65FD03B22A1937EA008A3C64 /* ProductList.swift in Sources */,
 				65FD03AD2A1932DA008A3C64 /* CataloguePresenterProtocol.swift in Sources */,
 				65FD03822A17C70F008A3C64 /* ArbuzApp.xcdatamodeld in Sources */,
+				65FD03B92A1A70DA008A3C64 /* BucketTableViewCell.swift in Sources */,
 				65FD03A92A193231008A3C64 /* CataloguePresenter.swift in Sources */,
 				65FD03922A17C7D3008A3C64 /* TabBarViewController.swift in Sources */,
 				65FD037A2A17C70F008A3C64 /* SceneDelegate.swift in Sources */,

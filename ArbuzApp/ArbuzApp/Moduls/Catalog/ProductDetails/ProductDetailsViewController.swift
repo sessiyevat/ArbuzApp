@@ -8,11 +8,12 @@
 import UIKit
 import SnapKit
 
-class ProductDetailsViewController: UIViewController {
+class ProductDetailsViewController: UIViewController, ProductDetailsViewProtocol{
 
     // MARK: - Variables
 
-//    private var product: Product
+    private var product: Product
+    var presenter: ProductDetailsPresenterProtocol!
     
     // MARK: - UI Components
 
@@ -59,14 +60,14 @@ class ProductDetailsViewController: UIViewController {
         setupUI()
     }
     
-//    init(product: Product){
-////        self.product = product
-//        super.init(nibName: nil, bundle: nil)
-//    }
+    init(product: Product){
+        self.product = product
+        super.init(nibName: nil, bundle: nil)
+    }
     
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - UI Setup
 
@@ -77,12 +78,12 @@ class ProductDetailsViewController: UIViewController {
         view.addSubview(priceLabel)
         view.addSubview(addButton)
         
-//        imageView.image = UIImage(named: product.image)
-//        productNameLabel.text = product.name
-//        priceLabel.text = product.price
+        imageView.image = UIImage(named: product.image)
+        productNameLabel.text = product.name
+        priceLabel.text = product.price
         
         imageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(20)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(10)
             make.leading.trailing.equalToSuperview().inset(10)
             make.height.equalToSuperview().multipliedBy(0.5)
         }
@@ -127,14 +128,14 @@ class ProductDetailsViewController: UIViewController {
     }
     
     @objc private func AddToCart() {
-//        DataPersistanceManager.shared.downloadProduct(model: self.product) { result in
-//            switch result{
-//            case .success():
-//                NotificationCenter.default.post(name: NSNotification.Name("Downloaded"), object: nil)
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
-//        dismiss(animated: true, completion: nil)
+        DataManager.shared.downloadProduct(model: self.product) { result in
+            switch result{
+            case .success():
+                NotificationCenter.default.post(name: NSNotification.Name("Downloaded"), object: nil)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        dismiss(animated: true, completion: nil)
     }
 }

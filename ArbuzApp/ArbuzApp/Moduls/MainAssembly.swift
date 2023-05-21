@@ -18,7 +18,14 @@ class MainAssembly {
         let viewController = CatalogueViewController()
         
         let presenter = CataloguePresenter(view: viewController)
+        viewController.presenter = presenter
         
+        return viewController
+    }
+    
+    static func createProductDetails(product: Product) -> ProductDetailsViewController {
+        let viewController = ProductDetailsViewController()
+        let presenter = ProductDetailsPresenter(view: viewController, product: product)
         viewController.presenter = presenter
         
         return viewController

@@ -26,7 +26,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "Apple"
         label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         label.textAlignment = .left
         label.font = .systemFont(ofSize: 16, weight: .regular)
         return label
@@ -47,7 +47,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
        let label = UILabel()
         label.text = "289 tg"
         label.textAlignment = .left
-        label.numberOfLines = 0
+        label.numberOfLines = 1
         label.font = .systemFont(ofSize: 18, weight: .semibold)
         return label
     }()
@@ -86,20 +86,21 @@ class ProductCollectionViewCell: UICollectionViewCell {
         }
         
         productWeightLabel.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(8)
-            make.top.equalTo(productNameLabel.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(10)
+            make.top.equalTo(productNameLabel.snp.bottom).offset(4)
         }
         
         priceLabel.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(10)
             make.bottom.equalToSuperview().inset(10)
-            make.top.equalTo(productWeightLabel.snp.bottom).offset(10)
+            make.top.equalTo(productWeightLabel.snp.bottom).offset(4)
         }
     }
     
-//    func configure(with product: Product){
-//        productImageView.image = UIImage(named: product.image)
-//        productNameLabel.text = product.name
-//        priceLabel.text = product.price
-//    }
+    func configure(with product: Product){
+        productImageView.image = UIImage(named: product.image)
+        productNameLabel.text = product.name
+        productWeightLabel.text = "kg"
+        priceLabel.text = product.price
+    }
 }

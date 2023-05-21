@@ -11,6 +11,8 @@ import SnapKit
 class CatalogueSectionsCollectionView: UITableViewCell {
     
     var presenter: CataloguePresenterProtocol!
+    var products: [String: [Product]]?
+    let sections = ["Milk Products", "Fruits", "Vegetables"]
     
     private let collectionView: UICollectionView = UICollectionView(
         frame: .zero,
@@ -35,7 +37,7 @@ class CatalogueSectionsCollectionView: UITableViewCell {
             let verticalGroup = NSCollectionLayoutGroup.vertical(
                 layoutSize: NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(0.4),
-                    heightDimension: .absolute(190)),
+                    heightDimension: .absolute(200)),
                 subitem: item,
                 count: 1)
 
@@ -79,24 +81,28 @@ class CatalogueSectionsCollectionView: UITableViewCell {
 
 extension CatalogueSectionsCollectionView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        let continent = presenter.categoryProducts!.keys.sorted()[section]
+        return presenter.categoryProducts![continent]?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else {
             return UICollectionViewCell()
         }
+        
+        cell.configure(with: presenter.getModel(by: indexPath))
         return cell
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return presenter.categoryProducts!.keys.count
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeader.identifier, for: indexPath) as! SectionHeader
-                sectionHeader.label.text = "Header"
+            sectionHeader.label.text = sections[indexPath.section]
                 return sectionHeader
             } else {
                  return UICollectionReusableView()
@@ -105,6 +111,6 @@ extension CatalogueSectionsCollectionView: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        presenter.cellTappedAt(product: "someString")
+        presenter.cellTappedAt(indexPath)
     }
 }

@@ -11,27 +11,30 @@ import UIKit
 class CataloguePresenter: CataloguePresenterProtocol {
     
     weak var view: CatalogueViewProtocol?
-//    var countries: [Country] = []
+    var categoryProducts: [String : [Product]]?
     
     init(view: CatalogueViewProtocol) {
         self.view = view
     }
     
     func viewDidLoad() {
-        
+        categoryProducts = groupByCategory()
+        view?.update(products: categoryProducts)
     }
     
-    func cellTappedAt(product: String){
-        view?.showProductDetails(product: "someString")
+    func groupByCategory() -> [String : [Product]]? {
+        let grouped = Dictionary(grouping: ProductList.products, by: { $0.category })
+        return grouped
     }
     
-//    private func updateTableView(viewModel: [CountriesListViewModel], continents: [String]) {
-//        DispatchQueue.main.async { [weak self] in
-//            self?.view?.updateCollectionView(viewModel: viewModel, continents: continents)
-//        }
-//    }
-
-//    func learnMoreButtonTapped(viewModel: CountriesListViewModel){
-//        view?.showCountryDetails(viewModel: viewModel)
-//    }
+    func getModel(by indexPath: IndexPath) -> Product {
+        let continent = categoryProducts!.keys.sorted()[indexPath.section]
+        let countriesForContinent = categoryProducts![continent]
+        let countryModel = (countriesForContinent?[indexPath.row])!
+        return countryModel
+    }
+    
+    func cellTappedAt(_ indexPath: IndexPath){
+        view?.showProductDetails(product: getModel(by: indexPath))
+    }
 }

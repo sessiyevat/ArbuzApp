@@ -8,7 +8,11 @@
 import Foundation
 
 protocol CataloguePresenterProtocol {
+    var categoryProducts: [String : [Product]]? { get }
+    
     func viewDidLoad()
 //    func learnMoreButtonTapped(viewModel: CountriesListViewModel)
-    func cellTappedAt(product: String)
+    func cellTappedAt(_ indexPath: IndexPath)
+    func getModel(by indexPath: IndexPath) -> Product
+//    func getModel()
 }

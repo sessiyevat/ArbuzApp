@@ -11,6 +11,7 @@ import SnapKit
 class CatalogueViewController: UIViewController, CatalogueViewProtocol {
 
     var presenter: CataloguePresenterProtocol!
+    var products: [String : [Product]]?
     
     // MARK: - UI Components
     
@@ -52,16 +53,19 @@ class CatalogueViewController: UIViewController, CatalogueViewProtocol {
             make.leading.trailing.equalToSuperview().inset(10)
         }
         
-        tableView.backgroundColor = .red
+//        tableView.backgroundColor = .red
         tableView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom)
             make.bottom.leading.trailing.equalToSuperview().inset(10)
-            
         }
     }
+
+    func update(products: [String : [Product]]?) {
+        self.products = products
+    }
     
-    func showProductDetails(product: String) {
-        let vc = ProductDetailsViewController()
+    func showProductDetails(product: Product) {
+        let vc = MainAssembly.createProductDetails(product: product)
         self.present(UINavigationController(rootViewController: vc), animated: true)
     }
 }
@@ -74,10 +78,9 @@ extension CatalogueViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0: let cell = PosterCollectionView()
-            cell.backgroundColor = .green
             return cell
-        case 1: let cell = CatalogueSectionsCollectionView()
-            cell.backgroundColor = .blue
+        case 1:
+            let cell = CatalogueSectionsCollectionView()
             cell.presenter = presenter
             return cell
         default:
@@ -91,7 +94,7 @@ extension CatalogueViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 1 {
-            return 720
+            return 750
         }
         return 150
     }
