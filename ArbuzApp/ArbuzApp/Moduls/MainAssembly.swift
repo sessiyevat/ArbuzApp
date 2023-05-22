@@ -30,4 +30,12 @@ class MainAssembly {
         
         return viewController
     }
+    
+    static func createBucket() -> BucketViewController {
+        let viewController = BucketViewController()
+        let presenter = BucketPresenter(view: viewController)
+        viewController.presenter = presenter
+        
+        return viewController
+    }
 }

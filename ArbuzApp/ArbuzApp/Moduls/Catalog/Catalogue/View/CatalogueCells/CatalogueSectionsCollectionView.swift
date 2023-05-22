@@ -12,7 +12,7 @@ class CatalogueSectionsCollectionView: UITableViewCell {
     
     var presenter: CataloguePresenterProtocol!
     var products: [String: [Product]]?
-    let sections = ["Milk Products", "Fruits", "Vegetables"]
+    let sections = ["Молочные продукты", "Фрукты", "Овощи"]
     
     private let collectionView: UICollectionView = UICollectionView(
         frame: .zero,

@@ -9,17 +9,16 @@ import UIKit
 import SnapKit
 
 class ProductDetailsViewController: UIViewController, ProductDetailsViewProtocol{
-
+    
     // MARK: - Variables
 
-    private var product: Product
+    private var product: Product?
     var presenter: ProductDetailsPresenterProtocol!
     
     // MARK: - UI Components
 
     private let imageView: UIImageView = {
        let imageView = UIImageView()
-        imageView.image = UIImage(named: "template")
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -27,7 +26,6 @@ class ProductDetailsViewController: UIViewController, ProductDetailsViewProtocol
     private let productNameLabel: UILabel = {
        let label = UILabel()
         label.lineBreakMode = .byWordWrapping
-        label.text = "Some text: Apple"
         label.numberOfLines = 0
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 24, weight: .regular)
@@ -36,9 +34,6 @@ class ProductDetailsViewController: UIViewController, ProductDetailsViewProtocol
     
     private let priceLabel: UILabel = {
        let label = UILabel()
-//        label.textColor = UIColor(named: "main")
-        label.text = "800tg"
-        label.numberOfLines = 0
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 22, weight: .semibold)
         return label
@@ -58,15 +53,15 @@ class ProductDetailsViewController: UIViewController, ProductDetailsViewProtocol
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
+        presenter.viewDidLoad()
     }
     
-    init(product: Product){
+    func updateView(with product: Product) {
         self.product = product
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        imageView.image = UIImage(named: product.image)
+        productNameLabel.text = product.name
+        priceLabel.text = String(product.price) + " ₸"
     }
     
     // MARK: - UI Setup
@@ -78,10 +73,6 @@ class ProductDetailsViewController: UIViewController, ProductDetailsViewProtocol
         view.addSubview(priceLabel)
         view.addSubview(addButton)
         
-        imageView.image = UIImage(named: product.image)
-        productNameLabel.text = product.name
-        priceLabel.text = product.price
-        
         imageView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(10)
             make.leading.trailing.equalToSuperview().inset(10)
@@ -90,17 +81,15 @@ class ProductDetailsViewController: UIViewController, ProductDetailsViewProtocol
         
         productNameLabel.snp.makeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).inset(10)
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(30)
             make.centerX.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.2)
         }
-        
         priceLabel.snp.makeConstraints { make in
             make.top.equalTo(productNameLabel.snp.bottom)
             make.bottom.equalToSuperview().inset(40)
             make.height.equalToSuperview().multipliedBy(0.07)
             make.leading.equalToSuperview().inset(20)
-            make.trailing.equalTo(addButton.snp.leading)
         }
 
         addButton.snp.makeConstraints { make in
@@ -128,14 +117,7 @@ class ProductDetailsViewController: UIViewController, ProductDetailsViewProtocol
     }
     
     @objc private func AddToCart() {
-        DataManager.shared.downloadProduct(model: self.product) { result in
-            switch result{
-            case .success():
-                NotificationCenter.default.post(name: NSNotification.Name("Downloaded"), object: nil)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
+        presenter.addToCart()
         dismiss(animated: true, completion: nil)
     }
 }

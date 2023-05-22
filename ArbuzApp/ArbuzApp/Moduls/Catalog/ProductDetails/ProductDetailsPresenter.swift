@@ -9,7 +9,7 @@ import Foundation
 
 protocol ProductDetailsPresenterProtocol {
     func viewDidLoad()
-//    func addCharacterToFavorites(character: CharacterDetailsViewModel)
+    func addToCart()
 }
 
 class ProductDetailsPresenter: ProductDetailsPresenterProtocol {
@@ -23,25 +23,23 @@ class ProductDetailsPresenter: ProductDetailsPresenterProtocol {
     }
     
     func viewDidLoad() {
-//        let viewModel = CharacterDetailsViewModel(character: character!)
-//        updateView(with: viewModel)
-
+        updateView(with: product!)
     }
     
-//    private func updateView(with viewModel: CharacterDetailsViewModel?) {
-//        DispatchQueue.main.async { [weak self] in
-//            self?.view?.updateView(with: viewModel)
-//        }
-//    }
-//
-//    func addCharacterToFavorites(character: CharacterDetailsViewModel) {
-//        DataManager.shared.saveCharacter(character: character) { result in
-//            switch result{
-//            case .success():
-//                NotificationCenter.default.post(name: NSNotification.Name("Downloaded"), object: nil)
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
-//    }
+    private func updateView(with product: Product) {
+        DispatchQueue.main.async { [weak self] in
+            self?.view?.updateView(with: product)
+        }
+    }
+
+    func addToCart() {
+        DataManager.shared.downloadProduct(model: self.product!) { result in
+            switch result{
+            case .success():
+                NotificationCenter.default.post(name: NSNotification.Name("Downloaded"), object: nil)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }

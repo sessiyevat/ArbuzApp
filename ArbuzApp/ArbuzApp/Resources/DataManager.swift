@@ -27,9 +27,11 @@ class DataManager{
         let item = ProductItem(context: context)
         item.id = Int64(model.id)
         item.name = model.name
-        item.price = model.price
+        item.price = String(model.price)
         item.category = model.category
         item.imageName = model.image
+//        item.count = model.count
+        
         
         do{
             try context.save()

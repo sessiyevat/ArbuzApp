@@ -10,6 +10,8 @@ import SnapKit
 
 class PosterCollectionView: UITableViewCell {
     
+    let images = ["poster1", "poster2", "poster3"]
+    
     private let collectionView: UICollectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: UICollectionViewCompositionalLayout(sectionProvider: { _, _ -> NSCollectionLayoutSection? in
@@ -25,7 +27,7 @@ class PosterCollectionView: UITableViewCell {
             let verticalGroup = NSCollectionLayoutGroup.vertical(
                 layoutSize: NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.0),
-                    heightDimension: .absolute(150)),
+                    heightDimension: .absolute(200)),
                 subitem: item,
                 count: 1)
             
@@ -47,7 +49,7 @@ class PosterCollectionView: UITableViewCell {
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(PosterCollectionViewCell.self, forCellWithReuseIdentifier: PosterCollectionViewCell.identifier)
         
         setupViews()
         setupConstraints()
@@ -65,8 +67,6 @@ class PosterCollectionView: UITableViewCell {
     
     func setupConstraints() {
         collectionView.snp.makeConstraints { make in
-//            make.top.equalToSuperview().inset(-50)
-//            make.bottom.leading.trailing.equalToSuperview()
             make.edges.equalToSuperview()
         }
     }
@@ -74,12 +74,15 @@ class PosterCollectionView: UITableViewCell {
 
 extension PosterCollectionView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .yellow
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        cell.configure(imageName: images[indexPath.row])
         return cell
     }
     

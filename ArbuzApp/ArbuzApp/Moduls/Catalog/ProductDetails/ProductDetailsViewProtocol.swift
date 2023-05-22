@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import UIKit
 
-protocol ProductDetailsViewProtocol {
-    
+protocol ProductDetailsViewProtocol: UIViewController {
+    func updateView(with product: Product)
 }

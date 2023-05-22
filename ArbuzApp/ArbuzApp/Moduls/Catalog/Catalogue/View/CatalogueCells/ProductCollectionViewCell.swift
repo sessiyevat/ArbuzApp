@@ -100,7 +100,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     func configure(with product: Product){
         productImageView.image = UIImage(named: product.image)
         productNameLabel.text = product.name
-        productWeightLabel.text = "kg"
-        priceLabel.text = product.price
+        productWeightLabel.text = product.count
+        priceLabel.text = String(product.price) + " ₸"
     }
 }

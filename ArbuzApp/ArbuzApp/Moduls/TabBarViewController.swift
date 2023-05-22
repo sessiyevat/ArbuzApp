@@ -46,7 +46,7 @@ class TabBarViewController: UITabBarController {
         let bellImage = UIImage(systemName: "bell")?.withTintColor(.black, renderingMode: .alwaysOriginal)
         
         let vc1 = MainAssembly.createCatalogue()
-        let vc2 = BucketViewController()
+        let vc2 = MainAssembly.createBucket()
         let vc3 = MainAssembly.createCatalogue()
     
         vc1.navigationItem.leftBarButtonItem =  UIBarButtonItem(customView: logoImageView)
@@ -56,12 +56,12 @@ class TabBarViewController: UITabBarController {
         let nav2 = UINavigationController(rootViewController: vc2)
         let nav3 = UINavigationController(rootViewController: vc3)
         
-        nav1.tabBarItem = UITabBarItem(title: "Catalogue", image: UIImage(systemName: "house.fill"), tag: 1)
-        nav2.tabBarItem = UITabBarItem(title: "Bucket", image: UIImage(systemName: "basket.fill"), tag: 1)
-        nav3.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle.fill"), tag: 1)
+        nav1.tabBarItem = UITabBarItem(title: "Каталог", image: UIImage(systemName: "house.fill"), tag: 1)
+        nav2.tabBarItem = UITabBarItem(title: "Корзина", image: UIImage(systemName: "basket.fill"), tag: 1)
+        nav3.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.crop.circle.fill"), tag: 1)
 
         nav1.navigationBar.prefersLargeTitles = true
-        nav2.navigationBar.prefersLargeTitles = true
+        nav2.navigationBar.prefersLargeTitles = false
         nav3.navigationBar.prefersLargeTitles = true
         
         setViewControllers([nav1, nav2, nav3], animated: false)

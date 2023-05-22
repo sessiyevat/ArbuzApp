@@ -19,7 +19,7 @@ class CatalogueViewController: UIViewController, CatalogueViewProtocol {
        let searchBar = UISearchBar()
         searchBar.backgroundColor = .clear
         searchBar.searchBarStyle = UISearchBar.Style.default
-        searchBar.placeholder = "Search..."
+        searchBar.placeholder = "Искать на Арбузе"
        return searchBar
     }()
     
@@ -40,6 +40,7 @@ class CatalogueViewController: UIViewController, CatalogueViewProtocol {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
     }
     
     private func setupUI() {
@@ -51,9 +52,11 @@ class CatalogueViewController: UIViewController, CatalogueViewProtocol {
         searchBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(-45)
             make.leading.trailing.equalToSuperview().inset(10)
+            
         }
         
-//        tableView.backgroundColor = .red
+        self.tableView.sectionHeaderHeight = 0.0
+        self.tableView.sectionFooterHeight = 0.0
         tableView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom)
             make.bottom.leading.trailing.equalToSuperview().inset(10)
@@ -96,7 +99,7 @@ extension CatalogueViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 1 {
             return 750
         }
-        return 150
+        return 200
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

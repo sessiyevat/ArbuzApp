@@ -6,12 +6,18 @@
 //
 
 import UIKit
+import SnapKit
 
-class BucketViewController: UIViewController {
+protocol BucketViewProtocol: UIViewController {
+    func updateView(with products: [ProductItem])
+}
+
+class BucketViewController: UIViewController, BucketViewProtocol {
     
     // MARK: Variables
 
     private var products: [ProductItem] = [ProductItem]()
+    var presenter: BucketPresenterProtocol!
     
     // MARK: - UI Components
 
@@ -38,26 +44,27 @@ class BucketViewController: UIViewController {
     }
     
     func fetchLocalStorage(){
-        DataManager.shared.fetchingProductsFromDB { [weak self] result in
-            switch result {
-            case .success(let products):
-                self?.products = products
-                self?.savedTable.reloadData()
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
+        presenter.fetchLocalStorage()
     }
     
     // MARK: - UI Setup
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        savedTable.frame = view.bounds
-    }
+    
     private func setupUI() {
+        title = "Моя корзина"
         view.backgroundColor = .systemBackground
         view.addSubview(savedTable)
+        
+        savedTable.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
+    func updateView(with products: [ProductItem]) {
+        self.products = products
+        DispatchQueue.main.async {
+            self.savedTable.reloadData()
+        }
     }
 }
 
@@ -72,7 +79,7 @@ extension BucketViewController: UITableViewDelegate, UITableViewDataSource {
         }
         let product = products[indexPath.row]
         cell.configure(name: product.name ?? "",
-                       price: product.price ?? "",
+                       price: String(product.price ?? ""),
                        imageName: product.imageName ?? "")
         return cell
     }
@@ -84,15 +91,9 @@ extension BucketViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
-            DataManager.shared.deleteTitleWith(model: products[indexPath.row]) { [weak self] result in
-                switch result {
-                case .success(): print("Deleted")
-                case .failure(let error): print(error.localizedDescription)
-                }
-                
-                self?.products.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
+            presenter.deleteFromStorage(indexPath)
+            self.products.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         default: break;
         }
     }
