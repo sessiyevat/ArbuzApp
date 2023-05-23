@@ -38,4 +38,12 @@ class MainAssembly {
         
         return viewController
     }
+    
+    static func createOrderView(_ products: [ProductItem]) -> OrderViewController {
+        let viewController = OrderViewController()
+        let presenter = OrderViewPresenter(view: viewController, products: products)
+        viewController.presenter = presenter
+        
+        return viewController
+    }
 }

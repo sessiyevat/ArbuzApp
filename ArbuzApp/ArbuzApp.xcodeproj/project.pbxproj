@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		652D480D2A1BE01C0081C937 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652D480C2A1BE01C0081C937 /* OrderViewController.swift */; };
+		652D480F2A1BE77F0081C937 /* DeliveryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652D480E2A1BE77F0081C937 /* DeliveryInfoView.swift */; };
+		652D48112A1BF62E0081C937 /* OrderViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652D48102A1BF62E0081C937 /* OrderViewPresenter.swift */; };
+		657205C82A1D16C400B87607 /* CompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657205C72A1D16C400B87607 /* CompleteViewController.swift */; };
 		65DFDF2B2A1BD19000F7BA86 /* ArbuzApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 65DFDF292A1BD19000F7BA86 /* ArbuzApp.xcdatamodeld */; };
 		65DFDF3D2A1BD1E600F7BA86 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DFDF3A2A1BD1E600F7BA86 /* DataManager.swift */; };
 		65DFDF3E2A1BD1E600F7BA86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DFDF3B2A1BD1E600F7BA86 /* AppDelegate.swift */; };
@@ -35,6 +39,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		652D480C2A1BE01C0081C937 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		652D480E2A1BE77F0081C937 /* DeliveryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryInfoView.swift; sourceTree = "<group>"; };
+		652D48102A1BF62E0081C937 /* OrderViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewPresenter.swift; sourceTree = "<group>"; };
+		657205C72A1D16C400B87607 /* CompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteViewController.swift; sourceTree = "<group>"; };
 		65DFDF1D2A1BD18F00F7BA86 /* ArbuzApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArbuzApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DFDF2A2A1BD19000F7BA86 /* ArbuzApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArbuzApp.xcdatamodel; sourceTree = "<group>"; };
 		65DFDF312A1BD19000F7BA86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,6 +83,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		652D480B2A1BDFEF0081C937 /* OrderConfirmation */ = {
+			isa = PBXGroup;
+			children = (
+				652D480C2A1BE01C0081C937 /* OrderViewController.swift */,
+				652D480E2A1BE77F0081C937 /* DeliveryInfoView.swift */,
+				652D48102A1BF62E0081C937 /* OrderViewPresenter.swift */,
+			);
+			path = OrderConfirmation;
+			sourceTree = "<group>";
+		};
+		657205C62A1D168600B87607 /* CompleteView */ = {
+			isa = PBXGroup;
+			children = (
+				657205C72A1D16C400B87607 /* CompleteViewController.swift */,
+			);
+			path = CompleteView;
+			sourceTree = "<group>";
+		};
 		65DFDF142A1BD18F00F7BA86 = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +142,8 @@
 		65DFDF422A1BD21100F7BA86 /* Moduls */ = {
 			isa = PBXGroup;
 			children = (
+				657205C62A1D168600B87607 /* CompleteView */,
+				652D480B2A1BDFEF0081C937 /* OrderConfirmation */,
 				65DFDF432A1BD21100F7BA86 /* BucketList */,
 				65DFDF472A1BD21100F7BA86 /* Catalog */,
 				65DFDF592A1BD21100F7BA86 /* Model */,
@@ -288,19 +316,23 @@
 				65DFDF3D2A1BD1E600F7BA86 /* DataManager.swift in Sources */,
 				65DFDF2B2A1BD19000F7BA86 /* ArbuzApp.xcdatamodeld in Sources */,
 				65DFDF622A1BD21100F7BA86 /* ProductDetailsViewController.swift in Sources */,
+				657205C82A1D16C400B87607 /* CompleteViewController.swift in Sources */,
 				65DFDF652A1BD21100F7BA86 /* CataloguePresenterProtocol.swift in Sources */,
 				65DFDF682A1BD21100F7BA86 /* PosterCollectionViewCell.swift in Sources */,
 				65DFDF672A1BD21100F7BA86 /* PosterCollectionView.swift in Sources */,
+				652D48112A1BF62E0081C937 /* OrderViewPresenter.swift in Sources */,
 				65DFDF632A1BD21100F7BA86 /* ProductDetailsPresenter.swift in Sources */,
 				65DFDF612A1BD21100F7BA86 /* ProductDetailsViewProtocol.swift in Sources */,
 				65DFDF6B2A1BD21100F7BA86 /* SectionHeader.swift in Sources */,
 				65DFDF5E2A1BD21100F7BA86 /* BucketViewController.swift in Sources */,
 				65DFDF6A2A1BD21100F7BA86 /* ProductCollectionViewCell.swift in Sources */,
+				652D480F2A1BE77F0081C937 /* DeliveryInfoView.swift in Sources */,
 				65DFDF6D2A1BD21100F7BA86 /* Product.swift in Sources */,
 				65DFDF6E2A1BD21100F7BA86 /* ProductList.swift in Sources */,
 				65DFDF6C2A1BD21100F7BA86 /* CatalogueViewController.swift in Sources */,
 				65DFDF662A1BD21100F7BA86 /* CatalogueViewProtocol.swift in Sources */,
 				65DFDF702A1BD21100F7BA86 /* MainAssembly.swift in Sources */,
+				652D480D2A1BE01C0081C937 /* OrderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

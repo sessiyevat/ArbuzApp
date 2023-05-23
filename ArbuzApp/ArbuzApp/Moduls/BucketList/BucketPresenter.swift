@@ -40,7 +40,7 @@ class BucketPresenter: BucketPresenterProtocol {
     }
     
     func deleteFromStorage(_ indexPath: IndexPath) {
-        DataManager.shared.deleteTitleWith(model: products![indexPath.row]) { [weak self] result in
+        DataManager.shared.deleteTitleWith(model: products![indexPath.row]) { result in
             switch result {
             case .success(): print("Deleted")
             case .failure(let error): print(error.localizedDescription)
